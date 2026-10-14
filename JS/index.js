@@ -34,8 +34,58 @@ function exibirFilmes(listaFilmes) {
     mensagem.classList.remove('d-none');
     return;
     }
+//Listagem dos filmes
+
+for(let i = 0;i < listaFilmes.length;i++){
+
+    const filme = listaFilmes[i];
+
+    //console.log(filme);
+    //console.log(filme.titulo);
+
+    let coluna = document.createElement('div');
+    coluna.className = 'col-md-6 col-lg-4'
+
+    let card = document.createElement('div');
+    card.className = 'card movie-card';
+
+    let cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+
+    let titulo = document.createElement('h3');
+    titulo.textContent = filme.titulo;
+
+    let genero = document.createElement('span');
+    genero.className = 'badge text-bg-secondary mb-3'
+
+    genero.textContent = filme.genero;
+
+    let ano = document.createElement('p');
+    ano.className = 'card-text mb-1';
+    ano.textContent = filme.ano;
+
+    let avaliacao = document.createElement('p');
+    avaliacao.className = 'card-text mb-1';
+    avaliacao.textContent = ${filme.nota.toFixed(1)}
+
+
+    cardBody.appendChild(avaliacao);
+    cardBody.appendChild(ano);
+    cardBody.appendChild(genero);
+    cardBody.appendChild(titulo);    
+    card.appendChild(cardBody);
+    coluna.appendChild(card);
+    
+
+    areaFilmes.appendChild(coluna);
+
 
 }
+
+
+}
+
+
 
 // Função para listar todos os filmes
 function listarTodos(){
