@@ -158,6 +158,30 @@ function atualizarResumo(){
 }
 
 
+function buscarfilmePortitulos (){
+    let tituloBuscado = document.querySelector
+    ('#busca-titulo').value;
+
+  //console.log(tituloBuscado);
+
+  tituloBuscado =tituloBuscado.trim().tolowercase();
+
+  //console.log(tituloBuscado);
+
+  let resultado = [];
+
+  for(let i = 0; i < filmes.length; i++){
+    if(filmes[i].titulo.trim().tolowercase().includes(tituloBuscado)
+        includes(tituloBuscado)){
+        resultado.push(filmes[i])
+        }
+
+        exibirFilmes(resultado);
+    }
+  }
+  document.querySelector('#botao-buscar').addEventLister('click',buscarfilmePortitulos)
+
+
 
 //chama a funcao para listar todos os filmes no carregamento da pagina
 listarTodos();
