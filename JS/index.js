@@ -35,6 +35,9 @@ function exibirFilmes(listaFilmes){
     let areaFilmes = document.querySelector('#lista-filmes');
     let mensagem = document.querySelector('#mensagem-listagem');
 
+    areaFilmes.innerHTML = '';
+    mensagem.classList.add('d-none');
+
     if(listaFilmes.length === 0){
         mensagem.textContent = 'Nunhum filme encontrado.';
         mensagem.classList.remove('d-none');
@@ -157,30 +160,48 @@ function atualizarResumo(){
 
 }
 
+function buscarFilmePorTitulo(){
+    let tituloBuscado = document.querySelector('#busca-titulo').value;
 
-function buscarfilmePortitulos (){
-    let tituloBuscado = document.querySelector
-    ('#busca-titulo').value;
+    tituloBuscado = tituloBuscado.trim().toLowerCase();
 
-  //console.log(tituloBuscado);
+    let resultado = [];
 
-  tituloBuscado =tituloBuscado.trim().tolowercase();
+    for(let i = 0; i < filmes.length; i++){
+        if(filmes[i].titulo.trim().toLowerCase().includes(tituloBuscado)){
+            resultado.push(filmes[i]);
+        }
+    }
 
-  //console.log(tituloBuscado);
+    exibirFilmes(resultado);
+    
+}
 
-  let resultado = [];
+function filtrarFilmesPorGenero(){
+    let generoSelecionado = document.querySelector('#genero').value;
+    
+    if(genero === 'Todos'){
+        listarTodos(filmes);
+    }else{
+        let resultado = [];
 
-  for(let i = 0; i < filmes.length; i++){
-    if(filmes[i].titulo.trim().tolowercase().includes(tituloBuscado)
-        includes(tituloBuscado)){
-        resultado.push(filmes[i])
+        // varrer a lista para encotnrar os filmes do genero filrado
+        for(let i = 0; i < filmes.length; i++){
+            if(filmes[i].genero === generoSelecionado){
+                resultado.push(filmes[i]);
+            }
         }
 
-        exibirFilmes(resultado);
+        exibirFilmes(resultado);        
     }
-  }
-  document.querySelector('#botao-buscar').addEventLister('click',buscarfilmePortitulos)
 
+
+}
+    
+
+document. querySelector('#botao-buscar').addEventListener('click', buscarFilmePorTitulo);
+document. querySelector('#botao-todos').addEventListener('click', listarTodos);
+document. querySelector. addEventListener('click',filtrarFilmesPorGenero);
 
 
 //chama a funcao para listar todos os filmes no carregamento da pagina
@@ -188,3 +209,5 @@ listarTodos();
 
 // Atualiza os dados de resumo no carregamento da página
 atualizarResumo();
+
+
